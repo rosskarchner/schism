@@ -30,3 +30,5 @@ pip-log.txt
 .idea/
 *.swp
 *~
+example/solr-config/data
+example/solr-config/data/*

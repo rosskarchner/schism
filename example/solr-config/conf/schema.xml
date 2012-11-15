@@ -883,13 +883,13 @@
    -->
    <field name="id" type="string" indexed="true" stored="true" required="true" /> 
    <field name="path" type="string" indexed="true" stored="true" required="true" /> 
-   <field name="name" type="text_general" indexed="true" stored="true"/>
+   <field name="title" type="text_general" indexed="true" stored="true"/>
    <field name="body" type="text_general" indexed="true" stored="true"/>
    <field name="category" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="tag" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="published" type="date" indexed="true" stored="true"/>
    <field name="modified" type="date" indexed="true" stored="true"/>
-
+   <field name="text" type="text_general" indexed="true" stored="true"/>
 
    <dynamicField name="*_i"  type="int"    indexed="true"  stored="true"/>
    <dynamicField name="*_s"  type="string"  indexed="true"  stored="true"/>
@@ -945,18 +945,18 @@
 
   <!-- copyField commands copy one field to another at the time a document
         is added to the index.  It's used either to index the same field differently,
-        or to add multiple fields to the same field for easier/faster searching.  -->
+        or to add multiple fields to the same field for easier/faster searching.  
 
    <copyField source="cat" dest="text"/>
    <copyField source="name" dest="text"/>
    <copyField source="manu" dest="text"/>
    <copyField source="features" dest="text"/>
    <copyField source="includes" dest="text"/>
-   <copyField source="manu" dest="manu_exact"/>
+   <copyField source="manu" dest="manu_exact"/> -->
 
-   <!-- Copy the price into a currency enabled field (default USD) -->
+   <!-- Copy the price into a currency enabled field (default USD) 
    <copyField source="price" dest="price_c"/>
-	
+	-->
    <!-- Above, multiple source fields are copied to the [text] field. 
 	  Another way to map multiple source fields to the same 
 	  destination field is to use the dynamic field syntax. 
