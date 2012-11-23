@@ -1,11 +1,11 @@
 import argparse, glob, os, json, re, datetime
-from pysolr import Solr
+
 
 date_pattern=re.compile("@\\d+@")
 
 
 
-conn = Solr('http://127.0.0.1:8983/solr/')
+
 
 if __name__ == '__main__':
     filenames=glob.glob('example/blog/*.json')

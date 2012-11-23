@@ -29,6 +29,7 @@ pip-log.txt
 .DS_Store
 .idea/
 *.swp
+*.swo
 *~
 example/solr_config/data/*
 example/solr_config/data/index/*
