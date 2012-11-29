@@ -1,13 +1,20 @@
-import argparse, glob, os, json, re, datetime
-
+import argparse
+import glob
+import os
+import json
+import re
+import datetime
+from resolver import resolve
 
 date_pattern=re.compile("@\\d+@")
 
 
-
-
-
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='load a Schism document store into Solr')
+    parser.add_argument('configuration', metavar='CONFIG', type=str, 
+    help='a Resolver statement pointing to a SchismSite')
+    args=parser.parse_args()
+    site=resolve(args.configuration)
     filenames=glob.glob('example/blog/*.json')
     documents=[]
     for filename in filenames:
