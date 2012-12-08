@@ -9,4 +9,4 @@ solr = Solr('http://127.0.0.1:8983/solr/')
 data = FileSystem(os.path.join(os.path.dirname(__file__), 'data'))
 
 
-site = SchismSite(data, index=solr)
+site = SchismSite(solr, data)

@@ -6,8 +6,11 @@ import glob
 class FileSystem(BaseStorage):
 
     def __init__(self, path, **kwargs):
-        self.path = os.path.join('/opt/', '')
+        self.path = path
         return super(FileSystem, self).__init__(self, **kwargs)
 
-    def select(self, pattern):
-        complete_pattern = self.path + pattern
+    def list_objects(self, suffix):
+        for dirpath, dirnames, filenames in os.walk(self.path):
+            for filename in filenames:
+                if not suffix or filename.endswith(suffix):
+                    yield os.path.join(dirpath, filename)

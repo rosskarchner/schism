@@ -17,10 +17,11 @@ if __name__ == '__main__':
                         help='a Resolver statement pointing to a SchismSite')
     args = parser.parse_args()
     site = resolve(args.configuration)
-    filenames = glob.glob('example/blog/*.json')
+    filenames = site.list_objects('.json')
     documents = []
     for filename in filenames:
         path, id = os.path.split(filename)
+        import pdb;pdb.set_trace()
         parsed = json.loads(file(filename).read())
         parsed['path'] = path
         parsed['id'] = id
@@ -31,5 +32,4 @@ if __name__ == '__main__':
                 parsed[key] = datetime.datetime.fromtimestamp(timestamp)
         documents.append(parsed)
 
-    print documents
-    conn.add(documents)
+    site.index.add(documents)
