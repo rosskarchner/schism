@@ -8,5 +8,3 @@ class SchismSite(object):
         paths = []
         for storage in self.storages:
             for obj in storage.list_objects(suffix):
-                paths.append(obj)
-        return paths
