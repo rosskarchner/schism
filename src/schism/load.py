@@ -1,12 +1,5 @@
 import argparse
-import glob
-import os
-import json
-import re
-import datetime
 from resolver import resolve
-
-date_pattern = re.compile("@\\d+@")
 
 
 if __name__ == '__main__':
@@ -17,19 +10,9 @@ if __name__ == '__main__':
                         help='a Resolver statement pointing to a SchismSite')
     args = parser.parse_args()
     site = resolve(args.configuration)
-    filenames = site.list_objects('.json')
-    documents = []
-    for filename in filenames:
-        path, id = os.path.split(filename)
-        import pdb;pdb.set_trace()
-        parsed = json.loads(file(filename).read())
-        parsed['path'] = path
-        parsed['id'] = id
-        for key in parsed:
-            value = parsed[key]
-            if value.startswith('@') and date_pattern.match(value):
-                timestamp = int(value[1:-1])
-                parsed[key] = datetime.datetime.fromtimestamp(timestamp)
-        documents.append(parsed)
+    document_paths = site.list_documents('.json')
 
-    site.index.add(documents)
+    for document_path in document_paths:
+        document = site.retrieve_document(document_path)
+
+        site.index.add(document)
