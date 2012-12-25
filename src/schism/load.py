@@ -10,9 +10,9 @@ if __name__ == '__main__':
                         help='a Resolver statement pointing to a SchismSite')
     args = parser.parse_args()
     site = resolve(args.configuration)
-    document_paths = site.list_documents('.json')
+    document_paths = site.list_documents()
 
+    documents = []
     for document_path in document_paths:
-        document = site.retrieve_document(document_path)
-
-        site.index.add(document)
+        documents.append(site.retrieve_document(document_path))
+    site.index.add(documents)
