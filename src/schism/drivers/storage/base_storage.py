@@ -6,5 +6,5 @@ class BaseStorage(object):
         else:
             self.hint = None
 
-    def select(pattern):
+    def select(self, pattern):
         raise NotImplementedError
