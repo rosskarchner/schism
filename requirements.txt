@@ -1,4 +1,3 @@
-argparse==1.2.1
-pysolr==2.1.0-beta
+# argparse and wsgiref are now part of Python stdlib (2.7+)
+pysolr>=3.9.0
 resolver==0.2.1
-wsgiref==0.1.2
